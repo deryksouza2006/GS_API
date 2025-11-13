@@ -12,7 +12,7 @@ public class GreetingResourceTest {
     @Test
     public void testHealthEndpoint() {
         given()
-                .when().get("/q/health")
+                .when().get("/api/health")
                 .then()
                 .statusCode(200);
     }
