@@ -2,8 +2,11 @@
 FROM maven:3.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
-COPY . .
+# Copia específicamente da raiz
+COPY ../.. .
 RUN mvn clean package -DskipTests
+
+# ... resto igual
 
 # Stage 2: Runtime
 FROM registry.access.redhat.com/ubi9/openjdk-17:1.23
