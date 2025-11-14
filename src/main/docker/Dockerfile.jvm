@@ -12,4 +12,4 @@ RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
 
-CMD ["java", "-Dquarkus.http.port=${PORT}", "-Dquarkus.http.host=0.0.0.0", "-jar", "target/quarkus-app/quarkus-run.jar"]
+CMD ["java", "-Dquarkus.http.port=8080", "-Dquarkus.http.host=0.0.0.0", "-jar", "target/quarkus-app/quarkus-run.jar"]
