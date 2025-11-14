@@ -14,7 +14,7 @@ public class CorsFilter implements ContainerResponseFilter {
                        ContainerResponseContext responseContext) throws IOException {
 
         // Headers CORS para TODAS as respostas (incluindo erros)
-        responseContext.getHeaders().add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+        responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
         responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
         responseContext.getHeaders().add("Access-Control-Allow-Headers",
                 "origin, content-type, accept, authorization, x-requested-with");

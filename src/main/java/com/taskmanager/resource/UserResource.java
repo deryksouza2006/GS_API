@@ -33,6 +33,7 @@ public class UserResource {
             // Não retornar a senha
             createdUser.password = null;
 
+
             return Response.status(Response.Status.CREATED)
                     .entity(new AuthResponse(createdUser, "Usuário registrado com sucesso"))
                     .build();
