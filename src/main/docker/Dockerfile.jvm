@@ -1,16 +1,15 @@
-# Etapa de Build
-FROM maven:3.8-openjdk-17 AS build
-WORKDIR /app
-COPY .. .  
-RUN mvn clean package -DskipTests
+FROM eclipse-temurin:17
 
-# Etapa de Runtime
-FROM eclipse-temurin:17-jre
 WORKDIR /app
-COPY --from=build /app/target/quarkus-app /app/quarkus-app/
 
-# Expõe a porta 8080 para que o Render detecte o serviço
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+COPY src src
+
+RUN chmod +x mvnw
+RUN ./mvnw clean package -DskipTests
+
 EXPOSE 8080
 
-# Comando para iniciar o aplicativo Quarkus, agora sem alterar a porta do properties
-CMD ["java", "-Dquarkus.http.host=0.0.0.0", "-Dquarkus.http.port=8080", "-jar", "/app/quarkus-app/quarkus-run.jar"]
+CMD ["java", "-Dquarkus.http.port=${PORT}", "-Dquarkus.http.host=0.0.0.0", "-jar", "target/quarkus-app/quarkus-run.jar"]
