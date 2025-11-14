@@ -1,0 +1,10 @@
+FROM maven:3.8-openjdk-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/target/quarkus-app /app/quarkus-app/
+EXPOSE 10000
+CMD ["sh", "-c", "java -Dquarkus.http.port=${PORT:-10000} -Dquarkus.http.host=0.0.0.0 -jar /app/quarkus-app/quarkus-run.jar"]
