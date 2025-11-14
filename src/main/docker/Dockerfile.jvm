@@ -13,4 +13,4 @@ COPY --from=build /app/target/quarkus-app /app/quarkus-app/
 EXPOSE 8080
 
 # Comando para iniciar o aplicativo Quarkus, agora sem alterar a porta do properties
-CMD ["java", "-Dquarkus.http.host=0.0.0.0", "-jar", "/app/quarkus-app/quarkus-run.jar"]
+CMD ["java", "-Dquarkus.http.host=0.0.0.0", "-Dquarkus.http.port=8080", "-jar", "/app/quarkus-app/quarkus-run.jar"]
